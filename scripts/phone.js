@@ -34,7 +34,7 @@ function displayPhones(phones) {
                       <p class="text-lg">There are many variations of passages of available, but the majority have suffered</p>
                       <p class="text-2xl font-bold">$999</p>
                       <div class="card-actions">
-                          <button class="btn btn-accent text-white">Show Details</button>
+                          <button class="btn btn-accent text-white" onclick="handleShowDetail('${phone.slug}')">Show Details</button>
                       </div>
                   </div>`;
     phoneContainer.appendChild(phoneCard);
@@ -42,6 +42,42 @@ function displayPhones(phones) {
   // hide loading spinner
   toggleLoadingSpinner(false);
 }
+
+// load single phone card data
+const handleShowDetail = (slug) => {
+  fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
+    .then((res) => res.json())
+    .then((data) => {
+      const phone = data.data;
+      showPhoneDetails(phone);
+    });
+};
+
+// show phone details
+const showPhoneDetails = (phone) => {
+  const showDetailContainer = document.getElementById("show-detail-container");
+  console.log(phone);
+  showDetailContainer.innerHTML = `<div class= "bg-slate-200 rounded-lg mb-8"> 
+  <img class="mx-auto" src="${phone.image}" alt="">
+  </div
+  <h1><span class="text-3xl font-bold">${phone.name}</span></h1>
+  <p class="text-xs py-3">It is a long established fact that a reader will be distracted by the
+      readable
+      <br>
+      content of a page when looking at its layout.
+  </p>
+  <p class="text-sm pb-1"><span class="font-semibold">Storage :</span> ${phone?.mainFeatures?.storage}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Display Size :</span> ${phone?.mainFeatures?.displaySize}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Chipset :</span> ${phone?.mainFeatures?.chipSet}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Memory : </span> ${phone?.mainFeatures?.memory}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Slug :</span> ${phone?.slug}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Release data :</span> ${phone?.releaseDate}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">Brand :</span> ${phone?.brand}</p>
+  <p class="text-sm pb-1"><span class="font-semibold">GPS :</span> ${phone?.others?.GPS}</p>`;
+
+  // display the modal
+  showDetailsModal.showModal();
+};
 
 // search input, button
 const handleSearch = () => {
