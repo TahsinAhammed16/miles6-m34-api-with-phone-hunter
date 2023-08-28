@@ -12,6 +12,17 @@ function displayPhones(phones) {
   // clear old phone container cards, before adding new cards
   phoneContainer.textContent = "";
 
+  // (2) display show all button if there are more than 12 phones, if its lesser than 12 the button will hide
+  const showAllContainer = document.getElementById("show-all-container");
+  if (phones.length > 6) {
+    showAllContainer.classList.remove("hidden");
+  } else {
+    showAllContainer.classList.add("hidden");
+  }
+
+  // (1) display only first 12 phones -- (2) line 15
+  phones = phones.slice(0, 6);
+
   for (const phone of phones) {
     const phoneCard = document.createElement("div");
     phoneCard.classList = `card w-96 bg-base-100 shadow-xl`;
