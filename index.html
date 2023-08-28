@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header class="container mx-auto">
+    <header class="container mx-auto hidden">
         <!-- nav section starts here -->
         <nav class="mt-2">
             <div class="navbar bg-base-100">
@@ -42,14 +42,29 @@
             </div>
             <!-- banner image -->
             <div class="flex justify-between items-end mt-12">
-                <img class="hidden md:block" src="./images/side.png" alt="">
-                <img src="./images/center.png" alt="">
-                <img class="hidden md:block" src="./images/side.png" alt="">
+                <img class="hidden lg:block" src="./images/side.png" alt="">
+                <img class="mx-auto" src="./images/center.png" alt="">
+                <img class="hidden lg:block" src="./images/side.png" alt="">
             </div>
         </section>
     </header>
-    <main>
+    <main class="container mx-auto py-20">
+        <!-- search input, button -->
+        <p class="text-4xl font-bold text-center">Search your phone</p>
+        <section class="flex justify-center py-12">
+            <div class="relative flex items-center gap-1">
+                <input id="search-field" type="text" placeholder="Search your phone"
+                    class="input input-bordered input-info w-full max-w-sm pl-10" />
+                <i class="fas fa-search absolute top-4 left-3"></i>
+                <button onclick="handleSearch()" class="btn btn-accent ml-1">Search</button>
+            </div>
+        </section>
+        <!-- search result phone container -->
+        <section>
+            <div id="phone-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
+            </div>
+        </section>
     </main>
     <footer>
 
